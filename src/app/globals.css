@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/* ================================================================
+   NEW NOW — Design System
+   Brutalista Editorial Premium
+   ================================================================ */
+
+/* ── Design Tokens ── */
+:root {
+  /* Backgrounds */
+  --color-bg-light: #FFFFFF;
+  --color-bg-dark: #0A0A0A;
+  --color-bg-black: #000000;
+
+  /* Text */
+  --color-text-dark: #000000;
+  --color-text-light: #FFFFFF;
+  --color-text-muted: #888888;
+
+  /* Accent — Gradiente agressivo */
+  --color-accent-red: #FF3333;
+  --color-accent-orange: #FF6600;
+
+  /* Typography */
+  --font-heading: var(--font-anton);
+  --font-body: var(--font-inter);
+
+  /* Radius — Arredondamento de containers de mídia */
+  --radius-card: 20px;
+
+  /* Spacing Scale */
+  --section-padding-y: clamp(5rem, 12vh, 10rem);
+  --section-padding-x: clamp(1.5rem, 5vw, 6rem);
+}
+
+/* ── Tailwind v4 Theme Tokens ── */
+@theme inline {
+  --color-bg-light: var(--color-bg-light);
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-black: var(--color-bg-black);
+  --color-text-dark: var(--color-text-dark);
+  --color-text-light: var(--color-text-light);
+  --color-text-muted: var(--color-text-muted);
+  --color-accent-red: var(--color-accent-red);
+  --color-accent-orange: var(--color-accent-orange);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+}
+
+/* ── Base Reset & Globals ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* GSAP controla o smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ── Seleção de texto ── */
+::selection {
+  background: var(--color-accent-red);
+  color: var(--color-text-light);
+}
+
+::-moz-selection {
+  background: var(--color-accent-red);
+  color: var(--color-text-light);
+}
+
+/* ── Scrollbar customizada ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-red);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-orange);
+}
+
+/* ── Tipografia Utilitária ── */
+.font-heading {
+  font-family: var(--font-heading), Impact, sans-serif;
+  text-transform: uppercase;
+  font-weight: 400; /* Anton já é bold por natureza */
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ── Texto Colossal (viewport-width sizing) ── */
+.text-colossal {
+  font-size: clamp(3rem, 12vw, 14rem);
+  line-height: 0.85;
+}
+
+.text-massive {
+  font-size: clamp(2.5rem, 8vw, 8rem);
+  line-height: 0.9;
+}
+
+.text-large {
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+/* ── Gradiente de Accent ── */
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent-red) 0%, var(--color-accent-orange) 100%);
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent-red) 0%, var(--color-accent-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section Padding Padrão ── */
+.section-padding {
+  padding: var(--section-padding-y) var(--section-padding-x);
+}
+
+/* ── Container de mídia com radius ── */
+.media-container {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
