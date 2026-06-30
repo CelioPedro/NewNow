@@ -1,36 +1,54 @@
 @import "tailwindcss";
 
 /* ================================================================
-   NEW NOW — Design System
-   Brutalista Editorial Premium
+   NEW NOW — Design System v2
+   Brutalista Editorial Premium (Referência IPER)
    ================================================================ */
 
 /* ── Design Tokens ── */
 :root {
-  /* Backgrounds */
+  /* Backgrounds — hierarquia de superfícies escuras */
   --color-bg-light: #FFFFFF;
   --color-bg-dark: #0A0A0A;
   --color-bg-black: #000000;
+  --color-bg-elevated: #111111;
+  --color-bg-surface: #1A1A1A;
 
   /* Text */
   --color-text-dark: #000000;
   --color-text-light: #FFFFFF;
-  --color-text-muted: #888888;
+  --color-text-muted: #A0A0A0;
+  --color-text-subtle: #666666;
 
   /* Accent — Gradiente agressivo */
   --color-accent-red: #FF3333;
   --color-accent-orange: #FF6600;
 
+  /* Borders */
+  --color-border-light: rgba(0, 0, 0, 0.06);
+  --color-border-dark: rgba(255, 255, 255, 0.08);
+
   /* Typography */
   --font-heading: var(--font-anton);
   --font-body: var(--font-inter);
 
-  /* Radius — Arredondamento de containers de mídia */
+  /* Radius */
   --radius-card: 20px;
+  --radius-sm: 12px;
 
-  /* Spacing Scale */
-  --section-padding-y: clamp(5rem, 12vh, 10rem);
-  --section-padding-x: clamp(1.5rem, 5vw, 6rem);
+  /* Spacing — generoso, cinematográfico */
+  --section-padding-y: clamp(6rem, 15vh, 12rem);
+  --section-padding-x: clamp(2rem, 6vw, 8rem);
+
+  /* Header */
+  --header-height: 72px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-base: 0.4s;
+  --duration-slow: 0.7s;
+  --duration-slower: 1.2s;
 }
 
 /* ── Tailwind v4 Theme Tokens ── */
@@ -38,11 +56,16 @@
   --color-bg-light: var(--color-bg-light);
   --color-bg-dark: var(--color-bg-dark);
   --color-bg-black: var(--color-bg-black);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-bg-surface: var(--color-bg-surface);
   --color-text-dark: var(--color-text-dark);
   --color-text-light: var(--color-text-light);
   --color-text-muted: var(--color-text-muted);
+  --color-text-subtle: var(--color-text-subtle);
   --color-accent-red: var(--color-accent-red);
   --color-accent-orange: var(--color-accent-orange);
+  --color-border-light: var(--color-border-light);
+  --color-border-dark: var(--color-border-dark);
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
 }
@@ -57,7 +80,7 @@
 }
 
 html {
-  scroll-behavior: auto; /* GSAP controla o smooth scroll */
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -66,7 +89,7 @@ body {
   background: var(--color-bg-light);
   color: var(--color-text-dark);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
@@ -83,7 +106,7 @@ body {
 
 /* ── Scrollbar customizada ── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -92,20 +115,23 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-accent-red);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent-orange);
 }
 
-/* ── Tipografia Utilitária ── */
+/* ================================================================
+   TIPOGRAFIA
+   ================================================================ */
+
 .font-heading {
   font-family: var(--font-heading), Impact, sans-serif;
   text-transform: uppercase;
-  font-weight: 400; /* Anton já é bold por natureza */
+  font-weight: 400;
   line-height: 0.9;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .font-body {
@@ -114,23 +140,50 @@ body {
   line-height: 1.6;
 }
 
-/* ── Texto Colossal (viewport-width sizing) ── */
+/* ── Escala tipográfica — viewport-fluid ── */
 .text-colossal {
-  font-size: clamp(3rem, 12vw, 14rem);
-  line-height: 0.85;
+  font-size: clamp(4rem, 15vw, 18rem);
+  line-height: 0.82;
 }
 
 .text-massive {
-  font-size: clamp(2.5rem, 8vw, 8rem);
-  line-height: 0.9;
+  font-size: clamp(3rem, 10vw, 10rem);
+  line-height: 0.88;
+}
+
+.text-display {
+  font-size: clamp(2rem, 6vw, 6rem);
+  line-height: 0.92;
 }
 
 .text-large {
-  font-size: clamp(1.5rem, 4vw, 4rem);
+  font-size: clamp(1.25rem, 3vw, 3rem);
   line-height: 1;
 }
 
-/* ── Gradiente de Accent ── */
+.text-label {
+  font-size: clamp(0.625rem, 0.8vw, 0.8rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── Texto Outline/Vazado ── */
+.text-outline {
+  -webkit-text-stroke: clamp(1.5px, 0.2vw, 3px) rgba(255, 255, 255, 0.9);
+  -webkit-text-fill-color: transparent;
+}
+
+.text-outline-dark {
+  -webkit-text-stroke: clamp(1.5px, 0.2vw, 3px) rgba(0, 0, 0, 0.8);
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================================================================
+   UTILITÁRIOS
+   ================================================================ */
+
+/* ── Gradiente Accent ── */
 .gradient-accent {
   background: linear-gradient(135deg, var(--color-accent-red) 0%, var(--color-accent-orange) 100%);
 }
@@ -142,13 +195,40 @@ body {
   background-clip: text;
 }
 
-/* ── Section Padding Padrão ── */
+/* ── Section Padding ── */
 .section-padding {
   padding: var(--section-padding-y) var(--section-padding-x);
 }
 
-/* ── Container de mídia com radius ── */
+.section-padding-x {
+  padding-left: var(--section-padding-x);
+  padding-right: var(--section-padding-x);
+}
+
+/* ── Container de mídia ── */
 .media-container {
   border-radius: var(--radius-card);
   overflow: hidden;
+}
+
+/* ── Noise texture overlay ── */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Vinheta escura ── */
+.vignette::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  z-index: 1;
 }

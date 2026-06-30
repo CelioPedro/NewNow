@@ -1,28 +1,33 @@
 "use client";
 
+const metrics = [
+  { value: "200+", label: "Projetos Entregues" },
+  { value: "<50ms", label: "Load Time Médio" },
+  { value: "Zero", label: "Templates Usados" },
+];
+
 export default function ManifestoSection() {
   return (
     <section
       id="manifesto"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative h-screen flex flex-col items-center justify-center overflow-hidden noise-overlay"
       style={{
         backgroundColor: "var(--color-bg-black)",
         color: "var(--color-text-light)",
       }}
     >
-      {/* Linhas decorativas verticais */}
-      <div className="absolute inset-0 flex justify-between px-[10%] opacity-[0.04]">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <div
-            key={`line-${i}`}
-            className="w-px h-full bg-white"
-          />
-        ))}
-      </div>
+      {/* ── Conteúdo central ── */}
+      <div className="relative z-10 text-center w-full" style={{ padding: "0 var(--section-padding-x)" }}>
+        {/* Label */}
+        <span
+          className="text-label font-body block mb-8 md:mb-12"
+          style={{ color: "var(--color-text-subtle)" }}
+        >
+          Manifesto
+        </span>
 
-      <div className="relative z-10 text-center section-padding max-w-5xl mx-auto">
-        {/* Texto Principal — Editorial */}
-        <h2 className="font-heading text-colossal">
+        {/* Texto colossal */}
+        <h2 className="font-heading text-colossal mx-auto">
           CÓDIGO FEITO
           <br />
           PARA SER
@@ -31,13 +36,44 @@ export default function ManifestoSection() {
         </h2>
 
         {/* Subtexto */}
-        <p className="font-body text-base md:text-lg mt-10 md:mt-16 opacity-50 max-w-2xl mx-auto leading-relaxed">
+        <p
+          className="font-body text-sm md:text-base mt-12 md:mt-16 mx-auto max-w-xl leading-relaxed"
+          style={{ color: "var(--color-text-muted)", opacity: 0.6 }}
+        >
           Sem templates. Sem atalhos. Engenharia pura focada em performance
           milissegunda e visuais absolutos.
         </p>
+      </div>
 
-        {/* Linha accent horizontal */}
-        <div className="w-24 h-px gradient-accent mx-auto mt-10 opacity-60" />
+      {/* ── Counter row — métricas conceituais ── */}
+      <div
+        className="relative z-10 w-full mt-20 md:mt-28"
+        style={{
+          padding: "0 var(--section-padding-x)",
+          borderTop: "1px solid var(--color-border-dark)",
+        }}
+      >
+        <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
+          {metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="py-8 md:py-10 text-center"
+            >
+              <span
+                className="font-heading block text-2xl md:text-4xl lg:text-5xl mb-2"
+                style={{ color: "var(--color-accent-red)" }}
+              >
+                {metric.value}
+              </span>
+              <span
+                className="text-label font-body"
+                style={{ color: "var(--color-text-subtle)" }}
+              >
+                {metric.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
