@@ -7,8 +7,9 @@
 
 /* ── Design Tokens ── */
 :root {
-  /* Backgrounds — hierarquia de superfícies escuras */
+  /* Backgrounds — hierarquia de superfícies */
   --color-bg-light: #FFFFFF;
+  --color-bg-cream: #F5E6D8;
   --color-bg-dark: #0A0A0A;
   --color-bg-black: #000000;
   --color-bg-elevated: #111111;
@@ -54,6 +55,7 @@
 /* ── Tailwind v4 Theme Tokens ── */
 @theme inline {
   --color-bg-light: var(--color-bg-light);
+  --color-bg-cream: var(--color-bg-cream);
   --color-bg-dark: var(--color-bg-dark);
   --color-bg-black: var(--color-bg-black);
   --color-bg-elevated: var(--color-bg-elevated);
